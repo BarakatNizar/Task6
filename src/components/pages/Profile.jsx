@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import bg from "../../assets/profileBG.svg";
 import pale from "../../assets/pale1.svg"
 import demoProfilePic from "../../assets/demoUserProfileImage.jpeg"
@@ -22,8 +22,9 @@ const Profile = () => {
     const [phone, setPhone]= useState("+1 202 555 1234");
 
     const {auth , setAuth}=useAuth();
-    
+
     const [confirm , setConfirm]=useState('');
+
     const nav=useNavigate();
 
     const handleLogout=async()=>{
@@ -41,12 +42,12 @@ const Profile = () => {
             console.error("Logout Error: ",error);
         }
     }
-
-useEffect(()=>{
+    useEffect(()=>{
         if (confirm===true){
         handleLogout();
         }
     },[confirm])
+
   return (
     <div className='flex flex-col h-full w-full relative '>
         {/* Background image: */}
@@ -92,12 +93,12 @@ useEffect(()=>{
                     <p>{phone}</p>
                 </div>
             </section>
-            <button onClick={handleLogout}
+            <button onClick={()=>{setConfirm("open")}}
             className='fixed flex flex-row-reverse bottom-3 right-3 p-3 bg-green-600 border-[1px] rounded-full hover:bg-slate-700 hover:text-white hover:duration-300  '>
                 <img src={lgOutIcon} alt=""  className=' pl-2'/> Logout
             </button>
         </section>
-	{confirm==="open" && <ConfirmationPopup title={"Logout"}  desc={"Are you sure ?"} setConfirm={setConfirm} />}
+    {confirm==="open" && <ConfirmationPopup title={"Logout"}  desc={"Are you sure ?"} setConfirm={setConfirm} />}
     </div>
   )
 }
