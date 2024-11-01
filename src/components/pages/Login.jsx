@@ -28,7 +28,7 @@ const Login = () => {
     const {setAuth } =useAuth();
 
     const nav=useNavigate();
-
+  
     const [email , setUserEmail] = useState("");
     const [password , setUserPass] = useState("");
     const [invalidAuth , setInvaliedAuth]= useState(false);
@@ -69,9 +69,9 @@ const Login = () => {
             e.currentTarget.disabled=false;
         }
     }
-
-
-
+    useEffect(()=>{
+      Notification.requestPermission();
+    },[])
 
 
 
