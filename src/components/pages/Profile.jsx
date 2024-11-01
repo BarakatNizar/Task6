@@ -5,6 +5,8 @@ import demoProfilePic from "../../assets/demoUserProfileImage.jpeg"
 import lgOutIcon from "../../assets/logoutBtnIcon.svg"
 
 import UserProfileImage from '../ui-elements/UserProfileImage';
+import ConfirmationPopup from '../ui-elements/ConfirmationPopup';
+
 import axios, { AuthURL } from '../../api/axios';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
@@ -20,6 +22,8 @@ const Profile = () => {
     const [phone, setPhone]= useState("+1 202 555 1234");
 
     const {auth , setAuth}=useAuth();
+    
+    const [confirm , setConfirm]=useState('');
     const nav=useNavigate();
 
     const handleLogout=async()=>{
@@ -38,6 +42,11 @@ const Profile = () => {
         }
     }
 
+useEffect(()=>{
+        if (confirm===true){
+        handleLogout();
+        }
+    },[confirm])
   return (
     <div className='flex flex-col h-full w-full relative '>
         {/* Background image: */}
@@ -88,7 +97,7 @@ const Profile = () => {
                 <img src={lgOutIcon} alt=""  className=' pl-2'/> Logout
             </button>
         </section>
-
+	{confirm==="open" && <ConfirmationPopup title={"Logout"}  desc={"Are you sure ?"} setConfirm={setConfirm} />}
     </div>
   )
 }
