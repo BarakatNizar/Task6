@@ -2,27 +2,30 @@ import bg from "../../assets/landingBG.svg";
 import searchIcon from "../../assets/searchIcon.svg"
 import Logo from "../../assets/logo.png"
 
+
 import InteriorCladding from "../InteriorCladding";
 import LandscapingDep from "../LandscapingDep";
 import BusinessExhibition from "../BusinessExhibition";
 import Footer from "../Footer";
-
 import About from "../About";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import addNotification from "react-push-notification";
+// import addNotification from "react-push-notification"; Conflict with react18 .
+
 import React, { useState } from 'react'
 
 const LandingPage = () => {
   const [search, setSearch]=useState('');
   function makeNotification(title){
-    addNotification({
-      title:title,
-      icon:Logo,
-      native:true
-    });
+    // addNotification({
+    //   title:title,
+    //   icon:Logo,
+    //   native:true
+    // });
+    const notification= new Notification(title, {body:"Welcome Back Dear!" ,icon:Logo ,vibrate:true });
   }
-  setTimeout(()=>{makeNotification(`Welcome Back Dear!`)} , 2000);
+  setTimeout(()=>{makeNotification(`Ya Halla`)} , 2000);
+  
 
   return (
     <div className="h-full w-screen">
