@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect } from 'react'
 import bg from "../../assets/profileBG.svg";
 import pale from "../../assets/pale1.svg"
 import demoProfilePic from "../../assets/demoUserProfileImage.jpeg"
