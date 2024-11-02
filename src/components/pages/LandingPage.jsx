@@ -10,22 +10,28 @@ import Footer from "../Footer";
 import About from "../About";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
-// import addNotification from "react-push-notification"; Conflict with react18 .
+import addNotification from "react-push-notification"; //Conflict with react18 .
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+
 
 const LandingPage = () => {
   const [search, setSearch]=useState('');
+  useEffect(()=>{
+  	
   function makeNotification(title){
-    // addNotification({
-    //   title:title,
-    //   icon:Logo,
-    //   native:true
-    // });
-    const notification= new Notification(title, {body:"Welcome Back Dear!" ,icon:Logo ,vibrate:true });
+     addNotification({
+       title:title,
+       icon:Logo,
+       native:true
+     });
+    //const notification= new Notification(title, {body:"Welcome Back Dear!" ,icon:Logo ,vibrate:true });
   }
-  setTimeout(()=>{makeNotification(`Ya Halla`)} , 2000);
-  
+  useEffect(()=>{
+      Notification.requestPermission().then(()=>{  
+        setTimeout(()=>{makeNotification(`Ya Halla`)} , 2000);
+      })
+    },[]);
 
   return (
     <div className="h-full w-screen">
